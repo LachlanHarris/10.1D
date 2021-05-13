@@ -7,11 +7,12 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
+import java.net.URI;
 import java.sql.Time;
 import java.util.Date;
 
 public class Food {
-    int image;
+    Uri image;
     String title;
     String description;
     String date;
@@ -44,11 +45,11 @@ public class Food {
         this.inMyList = inMyList;
     }
 
-    public void setImage(int image) {
+    public void setImage(Uri image) {
         this.image = image;
     }
 
-    public int getImage() {
+    public Uri getImage() {
         return image;
     }
 

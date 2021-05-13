@@ -39,7 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.foodImage.setImageResource(foodList.get(position).getImage());
+        holder.foodImage.setImageURI(foodList.get(position).getImage());
         holder.foodTitle.setText(foodList.get(position).getTitle());
         holder.foodDescription.setText(foodList.get(position).getDescription());
         holder.foodLocation.setText(foodList.get(position).getLocation());

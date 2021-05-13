@@ -84,7 +84,8 @@ public class CameraOptionsFragment extends Fragment implements View.OnClickListe
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.framelayout, fragment).commit();
 
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                //Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.setType("image/*");
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(intent,1);

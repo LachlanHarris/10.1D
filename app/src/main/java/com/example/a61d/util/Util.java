@@ -12,7 +12,7 @@ public class Util {
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
 
-    public static final int FOOD_DATABASE_VERSION = 4;
+    public static final int FOOD_DATABASE_VERSION = 7;
     public static final String FOOD_DATABASE_NAME = "food_db";
     public static final String FOOD_TABLE_NAME = "food";
 
@@ -23,6 +23,7 @@ public class Util {
     public static final String FOOD_TIME = "food_time";
     public static final String FOOD_QUANTITY = "food_quantity";
     public static final String FOOD_LOCATION = "food_location";
+    public static final String FOOD_IMAGE = "food_image";
     public static final String IN_LIST = "in_mylist";
 
 

@@ -33,6 +33,7 @@ public class AddFood extends AppCompatActivity {
     EditText quantityField;
     EditText locationField;
     Button saveButton;
+    Uri imageUri;
 
 
     @Override
@@ -62,6 +63,7 @@ public class AddFood extends AppCompatActivity {
                 String date = DateFormat.format("MM/dd/yyyy", new Date(calender.getDate())).toString();
 
                 Food newFood = new Food(title,description,date,time,quantity,location,1);
+                newFood.setImage(imageUri);
                 db.insertFood(newFood);
                 finish();
             }
@@ -89,5 +91,7 @@ public class AddFood extends AppCompatActivity {
         super.onActivityResult(i, i1, aData);
         Uri _imageUri = aData.getData();
         SetImageButton(_imageUri);
+        imageUri = _imageUri;
+        getApplicationContext().grantUriPermission("com.example.a61d", _imageUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
     }
 }

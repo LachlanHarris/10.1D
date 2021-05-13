@@ -5,12 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 
 import androidx.annotation.Nullable;
 
 import com.example.a61d.model.Food;
 import com.example.a61d.util.Util;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +26,16 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         String CREATE_FOOD_TABLE = "CREATE TABLE " + Util.FOOD_TABLE_NAME + " (" + Util.FOOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
                 + Util.FOOD_TITLE + " TEXT, " + Util.FOOD_DESCRIPTION + " TEXT, " + Util.FOOD_DATE + " TEXT, "
                 + Util.FOOD_TIME + " TEXT, " + Util.FOOD_LOCATION + " TEXT, " + Util.FOOD_QUANTITY + " INT, "
-                + Util.IN_LIST + " INT);";
+                + Util.IN_LIST + " INT, " + Util.FOOD_IMAGE + " TEXT);" ;
         db.execSQL(CREATE_FOOD_TABLE);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String DROP_USER_TABLE = "DROP TABLE IF EXISTS ";
-        db.execSQL(DROP_USER_TABLE, new String[]{Util.FOOD_TABLE_NAME});
+        String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + Util.FOOD_TABLE_NAME;
+        db.execSQL(DROP_USER_TABLE);
+        //, new String[]{Util.FOOD_TABLE_NAME}
 
         onCreate(db);
     }
@@ -48,6 +51,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Util.FOOD_LOCATION, food.getLocation());
         contentValues.put(Util.FOOD_QUANTITY, food.getQuantity());
         contentValues.put(Util.IN_LIST, food.getInMyList());
+        contentValues.put(Util.FOOD_IMAGE, food.getImage().toString());
         long newRowID = db.insert(Util.FOOD_TABLE_NAME, null, contentValues);
         db.close();
         return newRowID;
@@ -79,6 +83,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                     food.setInMyList(1);
                     foodList.add(food);
                 }
+                food.setImage(Uri.parse(cursor.getString(8)));
 
             } while (cursor.moveToNext());
 
@@ -103,6 +108,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 food.setLocation(cursor.getString(5));
                 food.setQuantity(cursor.getInt(6));
                 food.setInMyList(cursor.getInt(7));
+                food.setImage(Uri.parse(cursor.getString(8)));
                 foodList.add(food);
 
             } while (cursor.moveToNext());
