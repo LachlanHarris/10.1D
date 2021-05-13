@@ -92,6 +92,6 @@ public class AddFood extends AppCompatActivity {
         Uri _imageUri = aData.getData();
         SetImageButton(_imageUri);
         imageUri = _imageUri;
-        getApplicationContext().grantUriPermission("com.example.a61d", _imageUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        grantUriPermission("com.example.a61d", _imageUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
     }
 }

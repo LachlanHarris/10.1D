@@ -42,6 +42,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 String username = nameField.getText().toString();
                 String password = passwordField.getText().toString();
+                //database doesn't store any other information as its not used anywhere in the app
 
                 if (password.equals(confirmPasswordField.getText().toString()))
                 {
