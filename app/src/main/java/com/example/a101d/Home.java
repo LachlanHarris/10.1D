@@ -85,9 +85,11 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnRow
                 Intent intentMyList = new Intent(Home.this, MyList.class);
                 finish();
                 startActivity(intentMyList);
+                return false;
             case R.id.Cart:
-
-
+                Intent intentCart = new Intent(Home.this, Cart.class);
+                startActivity(intentCart);
+                return false;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -95,6 +97,9 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnRow
 
     @Override
     public void onItemClick(int position) {
-        //currently no on click interaction for this recycler
+        Intent IntentFoodItem = new Intent(Home.this, FoodItem.class);
+        int foodID = foodList.get(position).getFoodID();
+        IntentFoodItem.putExtra("FoodID", foodID);
+        startActivity(IntentFoodItem);
     }
 }

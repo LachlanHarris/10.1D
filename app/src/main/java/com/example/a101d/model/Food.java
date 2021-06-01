@@ -3,6 +3,19 @@ package com.example.a101d.model;
 import android.net.Uri;
 
 public class Food {
+    // THIS IS A TEST
+    int foodID;
+
+    public int getFoodID() {
+        return foodID;
+    }
+
+    public void setFoodID(int foodID) {
+        this.foodID = foodID;
+    }
+    //
+
+
     Uri image;
     String title;
     String description;
@@ -13,8 +26,6 @@ public class Food {
     int inMyList;
 
     public Food( String title, String description, String date, String pickUpTime, int quantity, String location, int inMyList) {
-        //moved image setting to a setter because its a pain when creating new food items
-        //this.image = image;
         this.title = title;
         this.description = description;
         this.date = date;

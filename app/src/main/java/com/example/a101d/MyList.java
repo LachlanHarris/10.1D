@@ -65,8 +65,13 @@ public class MyList extends AppCompatActivity implements RecyclerViewAdapter.OnR
                 Intent intentHome = new Intent(MyList.this, Home.class);
                 finish();
                 startActivity(intentHome);
+                return false;
             case R.id.Account:
             case R.id.MyList:
+            case R.id.Cart:
+                Intent intentCart = new Intent(MyList.this, Cart.class);
+                startActivity(intentCart);
+                return false;
             default:
                 return super.onOptionsItemSelected(item);
         }

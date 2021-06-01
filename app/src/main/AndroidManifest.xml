@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.61D">
-        <activity android:name=".Cart"></activity>
+        <activity android:name=".FoodItem"></activity>
+        <activity android:name=".Cart" />
         <activity android:name=".AddFood" />
         <activity
             android:name=".MyList"

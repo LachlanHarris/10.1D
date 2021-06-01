@@ -2,7 +2,7 @@ package com.example.a101d.util;
 
 public class Util {
 
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 6;
     public static final String DATABASE_NAME = "user_db";
     public static final String TABLE_NAME = "users";
 
@@ -10,7 +10,7 @@ public class Util {
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
 
-    public static final int FOOD_DATABASE_VERSION = 8;
+    public static final int FOOD_DATABASE_VERSION = 18;
     public static final String FOOD_DATABASE_NAME = "food_db";
     public static final String FOOD_TABLE_NAME = "food";
 
