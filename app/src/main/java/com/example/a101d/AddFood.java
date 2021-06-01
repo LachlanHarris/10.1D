@@ -1,4 +1,4 @@
-package com.example.a61d;
+package com.example.a101d;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,19 +9,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.a61d.data.DatabaseHelper;
-import com.example.a61d.data.FoodDatabaseHelper;
-import com.example.a61d.model.Food;
+import com.example.a101d.data.FoodDatabaseHelper;
+import com.example.a101d.model.Food;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AddFood extends AppCompatActivity {

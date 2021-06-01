@@ -1,4 +1,4 @@
-package com.example.a61d.model;
+package com.example.a101d.model;
 
 public class User {
     private int userId;

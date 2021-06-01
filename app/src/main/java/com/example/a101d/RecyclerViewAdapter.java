@@ -1,7 +1,6 @@
-package com.example.a61d;
+package com.example.a101d;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.a61d.model.Food;
+import com.example.a101d.model.Food;
 
 import java.util.List;
 

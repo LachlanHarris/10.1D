@@ -1,4 +1,4 @@
-package com.example.a61d.data;
+package com.example.a101d.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.a61d.model.User;
-import com.example.a61d.util.Util;
+import com.example.a101d.model.User;
+import com.example.a101d.util.Util;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(@Nullable Context context) {

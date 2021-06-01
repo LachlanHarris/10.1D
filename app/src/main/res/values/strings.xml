@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">6.1D</string>
+    <string name="app_name">10.1D</string>
     <string name="title_activity_home">Home</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

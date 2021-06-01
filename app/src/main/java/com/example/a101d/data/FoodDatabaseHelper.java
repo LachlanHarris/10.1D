@@ -1,4 +1,4 @@
-package com.example.a61d.data;
+package com.example.a101d.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,10 +9,9 @@ import android.net.Uri;
 
 import androidx.annotation.Nullable;
 
-import com.example.a61d.model.Food;
-import com.example.a61d.util.Util;
+import com.example.a101d.model.Food;
+import com.example.a101d.util.Util;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 

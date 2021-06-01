@@ -1,15 +1,6 @@
-package com.example.a61d.model;
+package com.example.a101d.model;
 
-import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
-import android.widget.ImageView;
-
-import androidx.annotation.Nullable;
-
-import java.net.URI;
-import java.sql.Time;
-import java.util.Date;
 
 public class Food {
     Uri image;

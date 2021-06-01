@@ -10,4 +10,7 @@
     <item
         android:id="@+id/MyList"
         android:title="My List" />
+    <item
+        android:id="@+id/Cart"
+        android:title="Cart" />
 </menu>

@@ -1,4 +1,4 @@
-package com.example.a61d;
+package com.example.a101d;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.a61d.data.DatabaseHelper;
-import com.example.a61d.model.User;
+import com.example.a101d.data.DatabaseHelper;
+import com.example.a101d.model.User;
 
 public class SignUp extends AppCompatActivity {
 
