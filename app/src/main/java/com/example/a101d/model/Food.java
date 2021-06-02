@@ -3,19 +3,8 @@ package com.example.a101d.model;
 import android.net.Uri;
 
 public class Food {
-    // THIS IS A TEST
+
     int foodID;
-
-    public int getFoodID() {
-        return foodID;
-    }
-
-    public void setFoodID(int foodID) {
-        this.foodID = foodID;
-    }
-    //
-
-
     Uri image;
     String title;
     String description;
@@ -37,6 +26,14 @@ public class Food {
 
     public Food() {
 
+    }
+
+    public int getFoodID() {
+        return foodID;
+    }
+
+    public void setFoodID(int foodID) {
+        this.foodID = foodID;
     }
 
     public int getInMyList() {

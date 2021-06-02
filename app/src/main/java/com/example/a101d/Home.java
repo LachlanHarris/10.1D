@@ -44,20 +44,14 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnRow
         foodList = db.fetchAllFood();
 
         //these are the lines to display the demo item using a drawable int image referance
-        //Food testFood1 = new Food( "Spaghetti", "some spaghetti bolognese", testDate, testTime , 3, "Melbourne" , 0 );
+        Food testFood1 = new Food( "Spaghetti", "some spaghetti bolognese", testDate, testTime , 3, "Melbourne" , 0 );
         //testFood1.setImage(R.drawable.spag);
-        //foodList.add(testFood1);
+        foodList.add(testFood1);
 
         recyclerView = findViewById(R.id.foodRecylcer);
         recyclerViewAdapter = new RecyclerViewAdapter(foodList, this, this);
         recyclerView.setAdapter(recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
-
-
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +74,9 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnRow
         switch (item.getItemId()) {
             case R.id.Home:
                 //we are already at home
+                return false;
             case R.id.Account:
+                return false;
             case R.id.MyList:
                 Intent intentMyList = new Intent(Home.this, MyList.class);
                 finish();

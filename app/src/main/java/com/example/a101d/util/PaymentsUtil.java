@@ -1,11 +1,15 @@
 package com.example.a101d.util;
 
+import android.app.Activity;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
 //import com.google.android.gms.samples.wallet.Constants;
 
+
+import com.google.android.gms.wallet.PaymentsClient;
+import com.google.android.gms.wallet.Wallet;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -27,6 +31,12 @@ public class PaymentsUtil {
     //needed
     private static JSONObject getBaseRequest() throws JSONException {
         return new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
+    }
+
+    public static PaymentsClient createPaymentsClient(Activity activity) {
+        Wallet.WalletOptions walletOptions =
+                new Wallet.WalletOptions.Builder().setEnvironment(Constants.PAYMENTS_ENVIRONMENT).build();
+        return Wallet.getPaymentsClient(activity, walletOptions);
     }
 
     //needed
@@ -66,10 +76,10 @@ public class PaymentsUtil {
         parameters.put("allowedAuthMethods", getAllowedCardAuthMethods());
         parameters.put("allowedCardNetworks", getAllowedCardNetworks());
         // Optionally, you can add billing address/phone number associated with a CARD payment method.
-        parameters.put("billingAddressRequired", true);
-        JSONObject billingAddressParameters = new JSONObject();
-        billingAddressParameters.put("format", "FULL");
-        parameters.put("billingAddressParameters", billingAddressParameters);
+        //parameters.put("billingAddressRequired", true);
+       // JSONObject billingAddressParameters = new JSONObject();
+        //billingAddressParameters.put("format", "FULL");
+        //parameters.put("billingAddressParameters", billingAddressParameters);
         cardPaymentMethod.put("parameters", parameters);
 
         return cardPaymentMethod;
@@ -88,7 +98,6 @@ public class PaymentsUtil {
             JSONObject isReadyToPayRequest = getBaseRequest();
             isReadyToPayRequest.put(
                     "allowedPaymentMethods", new JSONArray().put(getBaseCardPaymentMethod()));
-
             return Optional.of(isReadyToPayRequest);
 
         } catch (JSONException e) {
@@ -96,12 +105,12 @@ public class PaymentsUtil {
         }
     }
 
-    private static JSONObject getTransactionInfo() throws JSONException {
+    private static JSONObject getTransactionInfo(String price) throws JSONException {
         JSONObject transactionInfo = new JSONObject();
-        transactionInfo.put("totalPrice", 1000);
+        transactionInfo.put("totalPrice", price);
         transactionInfo.put("totalPriceStatus", "FINAL");
-        transactionInfo.put("countryCode", "AUS");
-        transactionInfo.put("currencyCode", "AUD");
+        transactionInfo.put("countryCode", Constants.COUNTRY_CODE);
+        transactionInfo.put("currencyCode", Constants.CURRENCY_CODE);
         transactionInfo.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
 
         return transactionInfo;
@@ -121,12 +130,13 @@ public class PaymentsUtil {
             JSONObject paymentDataRequest = PaymentsUtil.getBaseRequest();
             paymentDataRequest.put(
                     "allowedPaymentMethods", new JSONArray().put(PaymentsUtil.getCardPaymentMethod()));
-            paymentDataRequest.put("transactionInfo", PaymentsUtil.getTransactionInfo());
+            paymentDataRequest.put("transactionInfo", PaymentsUtil.getTransactionInfo(price));
             paymentDataRequest.put("merchantInfo", PaymentsUtil.getMerchantInfo());
-            return Optional.of(paymentDataRequest);
 
       /* An optional shipping address requirement is a top-level property of the PaymentDataRequest
       JSON object. */
+
+            return Optional.of(paymentDataRequest);
 
         } catch (JSONException e) {
             return Optional.empty();
