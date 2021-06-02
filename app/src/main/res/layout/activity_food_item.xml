@@ -8,23 +8,138 @@
     tools:context=".FoodItem">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="172dp"
-        android:layout_marginLeft="172dp"
-        android:layout_marginTop="154dp"
-        android:text="TextView"
+        android:id="@+id/foodItemTitle"
+        android:layout_width="204dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/foodItemImage" />
 
     <include
         android:id="@+id/buyWithGooglePay"
         layout="@layout/buy_with_googlepay_button"
         android:layout_width="410dp"
         android:layout_height="52dp"
-        android:layout_marginTop="224dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/foodItemAddToCart" />
+
+    <ImageView
+        android:id="@+id/foodItemImage"
+        android:layout_width="263dp"
+        android:layout_height="138dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/foodItemDescriptionField"
+        android:layout_width="384dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemDescription" />
+
+    <TextView
+        android:id="@+id/foodItemDescription"
+        android:layout_width="189dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Description :"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemTitle" />
+
+    <TextView
+        android:id="@+id/foodItemDate"
+        android:layout_width="62dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="11dp"
+        android:text="Date :"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemDescriptionField" />
+
+    <TextView
+        android:id="@+id/foodItemPUTField"
+        android:layout_width="228dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/foodItemPUT"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemDateField" />
+
+    <TextView
+        android:id="@+id/foodItemDateField"
+        android:layout_width="284dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintStart_toEndOf="@+id/foodItemDate"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemDescriptionField" />
+
+    <TextView
+        android:id="@+id/foodItemPUT"
+        android:layout_width="135dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        android:text="Pick up times :"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemDate" />
+
+    <TextView
+        android:id="@+id/foodItemQuantity"
+        android:layout_width="77dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="9dp"
+        android:text="Quantity :"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemPUT" />
+
+    <TextView
+        android:id="@+id/foodItemQuantityFIeld"
+        android:layout_width="267dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toEndOf="@+id/foodItemQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemPUTField" />
+
+    <TextView
+        android:id="@+id/foodItemLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="10dp"
+        android:text="Location :"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemQuantity" />
+
+    <Button
+        android:id="@+id/foodItemAddToCart"
+        android:layout_width="368dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="69dp"
+        android:text="Add to cart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodItemLocation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

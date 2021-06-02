@@ -27,8 +27,6 @@ import org.json.JSONObject;
 public class PaymentsUtil {
     public static final BigDecimal CENTS_IN_A_UNIT = new BigDecimal(100d);
 
-
-    //needed
     private static JSONObject getBaseRequest() throws JSONException {
         return new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
     }
@@ -39,7 +37,7 @@ public class PaymentsUtil {
         return Wallet.getPaymentsClient(activity, walletOptions);
     }
 
-    //needed
+
     //leave everything as example as we are treating this like a test enviroment
     private static JSONObject getGatewayTokenizationSpecification() throws JSONException {
         return new JSONObject() {{
@@ -50,7 +48,7 @@ public class PaymentsUtil {
             }});
         }};
     }
-    //needed
+
     private static JSONArray getAllowedCardNetworks() {
         return new JSONArray()
                 .put("AMEX")
@@ -60,14 +58,14 @@ public class PaymentsUtil {
                 .put("MASTERCARD")
                 .put("VISA");
     }
-    //needed
+
     private static JSONArray getAllowedCardAuthMethods() {
         return new JSONArray()
                 .put("PAN_ONLY")
                 .put("CRYPTOGRAM_3DS");
     }
 
-    //I THINK NEEDED?
+
     private static JSONObject getBaseCardPaymentMethod() throws JSONException {
         JSONObject cardPaymentMethod = new JSONObject();
         cardPaymentMethod.put("type", "CARD");
@@ -75,16 +73,12 @@ public class PaymentsUtil {
         JSONObject parameters = new JSONObject();
         parameters.put("allowedAuthMethods", getAllowedCardAuthMethods());
         parameters.put("allowedCardNetworks", getAllowedCardNetworks());
-        // Optionally, you can add billing address/phone number associated with a CARD payment method.
-        //parameters.put("billingAddressRequired", true);
-       // JSONObject billingAddressParameters = new JSONObject();
-        //billingAddressParameters.put("format", "FULL");
-        //parameters.put("billingAddressParameters", billingAddressParameters);
+
         cardPaymentMethod.put("parameters", parameters);
 
         return cardPaymentMethod;
     }
-    //needed
+
     private static JSONObject getCardPaymentMethod() throws JSONException {
         JSONObject cardPaymentMethod = getBaseCardPaymentMethod();
         cardPaymentMethod.put("tokenizationSpecification", getGatewayTokenizationSpecification());
@@ -132,9 +126,6 @@ public class PaymentsUtil {
                     "allowedPaymentMethods", new JSONArray().put(PaymentsUtil.getCardPaymentMethod()));
             paymentDataRequest.put("transactionInfo", PaymentsUtil.getTransactionInfo(price));
             paymentDataRequest.put("merchantInfo", PaymentsUtil.getMerchantInfo());
-
-      /* An optional shipping address requirement is a top-level property of the PaymentDataRequest
-      JSON object. */
 
             return Optional.of(paymentDataRequest);
 

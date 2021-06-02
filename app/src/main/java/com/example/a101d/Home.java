@@ -36,17 +36,17 @@ public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnRow
         setSupportActionBar(toolbar);
         FoodDatabaseHelper db = new FoodDatabaseHelper(Home.this);
 
-        Long testLongForTime = Long.valueOf(89732485);
-        String testDate = new Date().toString();
-        String testTime = new Time(testLongForTime).toString();
+        //Long testLongForTime = Long.valueOf(89732485);
+        //String testDate = new Date().toString();
+        //String testTime = new Time(testLongForTime).toString();
 
         foodList = new ArrayList<Food>();
         foodList = db.fetchAllFood();
 
         //these are the lines to display the demo item using a drawable int image referance
-        Food testFood1 = new Food( "Spaghetti", "some spaghetti bolognese", testDate, testTime , 3, "Melbourne" , 0 );
+        //Food testFood1 = new Food( "Spaghetti", "some spaghetti bolognese", testDate, testTime , 3, "Melbourne" , 0 );
         //testFood1.setImage(R.drawable.spag);
-        foodList.add(testFood1);
+        //foodList.add(testFood1);
 
         recyclerView = findViewById(R.id.foodRecylcer);
         recyclerViewAdapter = new RecyclerViewAdapter(foodList, this, this);

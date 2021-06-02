@@ -3,19 +3,19 @@ package com.example.a101d;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.a101d.data.FoodDatabaseHelper;
+import com.example.a101d.model.Food;
 import com.example.a101d.util.PaymentsUtil;
-import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.wallet.PaymentsClient;
-import com.google.android.gms.wallet.Wallet;
+
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -27,20 +27,13 @@ import com.google.android.gms.wallet.AutoResolveHelper;
 import com.google.android.gms.wallet.IsReadyToPayRequest;
 import com.google.android.gms.wallet.PaymentData;
 import com.google.android.gms.wallet.PaymentDataRequest;
-import com.google.android.gms.wallet.PaymentsClient;
-import com.google.android.gms.wallet.WalletConstants;
 
-import java.util.Locale;
 import java.util.Optional;
-import java.util.zip.Inflater;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 
 
 public class FoodItem<view> extends AppCompatActivity {
@@ -48,6 +41,13 @@ public class FoodItem<view> extends AppCompatActivity {
     private View googlePayButton;
     private PaymentsClient paymentsClient;
     private static final int LOAD_PAYMENT_DATA_REQUEST_CODE = 1;
+
+    ImageView foodItemImage;
+    TextView foodItemTitleField;
+    TextView foodItemDescriptionField;
+    TextView foodItemDateField;
+    TextView foodItemPUTField;
+    TextView foodItemQuantityField;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -60,9 +60,26 @@ public class FoodItem<view> extends AppCompatActivity {
         paymentsClient = PaymentsUtil.createPaymentsClient(this);
         possiblyShowGooglePayButton();
 
+
+        foodItemImage = findViewById(R.id.foodItemImage);
+        foodItemTitleField = findViewById(R.id.foodItemTitle);
+        foodItemDescriptionField = findViewById(R.id.foodItemDescriptionField);
+        foodItemDateField = findViewById(R.id.foodItemDateField);
+        foodItemPUTField = findViewById(R.id.foodItemPUTField);
+        foodItemQuantityField = findViewById(R.id.foodItemQuantityFIeld);
+
+
         int ID = getIntent().getIntExtra("FoodID", 99999999);
-        TextView IDView = findViewById(R.id.textView2);
-        IDView.setText(String.valueOf(ID));
+        FoodDatabaseHelper db = new FoodDatabaseHelper(FoodItem.this);
+
+        Food food = db.FetchFood(ID);
+
+        foodItemImage.setImageURI(food.getImage());
+        foodItemTitleField.setText(food.getTitle());
+        foodItemDescriptionField.setText(food.getDescription());
+        foodItemDateField.setText(food.getDate());
+        foodItemPUTField.setText(food.getPickUpTime());
+        foodItemQuantityField.setText(String.valueOf(food.getQuantity()));
 
     }
 
@@ -109,6 +126,7 @@ public class FoodItem<view> extends AppCompatActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             // value passed in AutoResolveHelper
             case LOAD_PAYMENT_DATA_REQUEST_CODE:

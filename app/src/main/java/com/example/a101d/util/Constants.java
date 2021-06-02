@@ -51,28 +51,6 @@ public class Constants {
    */
   public static final int PAYMENTS_ENVIRONMENT = WalletConstants.ENVIRONMENT_TEST;
 
-  /**
-   * The allowed networks to be requested from the API. If the user has cards from networks not
-   * specified here in their account, these will not be offered for them to choose in the popup.
-   *
-   * @value #SUPPORTED_NETWORKS
-   */
-  public static final List<String> SUPPORTED_NETWORKS = Arrays.asList(
-      "AMEX",
-      "DISCOVER",
-      "JCB",
-      "MASTERCARD",
-      "VISA");
-
-  /**
-   * The Google Pay API may return cards on file on Google.com (PAN_ONLY) and/or a device token on
-   * an Android device authenticated with a 3-D Secure cryptogram (CRYPTOGRAM_3DS).
-   *
-   * @value #SUPPORTED_METHODS
-   */
-  public static final List<String> SUPPORTED_METHODS = Arrays.asList(
-      "PAN_ONLY",
-      "CRYPTOGRAM_3DS");
 
   /**
    * Required by the API, but not visible to the user.
