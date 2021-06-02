@@ -119,4 +119,30 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         }
         return foodList;
     }
+
+    public Food FetchFood(int id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String Select = "SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.FOOD_ID +  "=" + id ;
+        Cursor cursor = db.rawQuery(Select, null);
+        Food food = new Food();
+        if (cursor.moveToFirst()) {
+            do {
+
+                food.setFoodID(cursor.getInt(0));
+
+
+                food.setTitle(cursor.getString(1));
+                food.setDescription(cursor.getString(2));
+                food.setDate(cursor.getString(3));
+                food.setPickUpTime(cursor.getString(4));
+                food.setLocation(cursor.getString(5));
+                food.setQuantity(cursor.getInt(6));
+                food.setInMyList(cursor.getInt(7));
+                food.setImage(Uri.parse(cursor.getString(8)));
+
+            } while (cursor.moveToNext());
+        }
+        return food;
+    }
 }
