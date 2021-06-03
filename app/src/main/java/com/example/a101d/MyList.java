@@ -82,6 +82,9 @@ public class MyList extends AppCompatActivity implements RecyclerViewAdapter.OnR
 
     @Override
     public void onItemClick(int position) {
-        //currently no on click interaction for this recycler
+        Intent IntentFoodItem = new Intent(MyList.this, FoodItem.class);
+        int foodID = foodList.get(position).getFoodID();
+        IntentFoodItem.putExtra("FoodID", foodID);
+        startActivity(IntentFoodItem);
     }
 }

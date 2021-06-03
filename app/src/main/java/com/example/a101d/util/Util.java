@@ -10,7 +10,7 @@ public class Util {
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
 
-    public static final int FOOD_DATABASE_VERSION = 29;
+    public static final int FOOD_DATABASE_VERSION = 31;
     public static final String FOOD_DATABASE_NAME = "food_db";
     public static final String FOOD_TABLE_NAME = "food";
 

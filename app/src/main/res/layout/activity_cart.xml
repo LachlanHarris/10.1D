@@ -6,10 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".Cart">
 
+    <include
+        android:id="@+id/buyWithGooglePay"
+        layout="@layout/buy_with_googlepay_button"
+        android:layout_width="410dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="516dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/CartRecyclerView"
         android:layout_width="411dp"
         android:layout_height="383dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/cartTotal"
+        android:layout_width="182dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Total :"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CartRecyclerView" />
+
+    <TextView
+        android:id="@+id/cartTotalValue"
+        android:layout_width="155dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@+id/cartTotal"
+        app:layout_constraintTop_toBottomOf="@+id/CartRecyclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

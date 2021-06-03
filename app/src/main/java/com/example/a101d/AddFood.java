@@ -86,8 +86,8 @@ public class AddFood extends AppCompatActivity {
     public void onActivityResult(int i, int i1, Intent aData) {
         super.onActivityResult(i, i1, aData);
         Uri _imageUri = aData.getData();
+        grantUriPermission("com.example.a61d", _imageUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
         SetImageButton(_imageUri);
         imageUri = _imageUri;
-        grantUriPermission("com.example.a61d", _imageUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
     }
 }

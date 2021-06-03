@@ -88,6 +88,7 @@ public class FoodItem<view> extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 db.AddToCart(ID);
+                finish();
             }
         });
 
