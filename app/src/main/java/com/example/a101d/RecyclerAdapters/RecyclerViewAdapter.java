@@ -1,4 +1,4 @@
-package com.example.a101d;
+package com.example.a101d.RecyclerAdapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.a101d.R;
 import com.example.a101d.model.Food;
 
 import java.util.List;

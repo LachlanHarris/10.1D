@@ -25,7 +25,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         String CREATE_FOOD_TABLE = "CREATE TABLE " + Util.FOOD_TABLE_NAME + " (" + Util.FOOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
                 + Util.FOOD_TITLE + " TEXT, " + Util.FOOD_DESCRIPTION + " TEXT, " + Util.FOOD_DATE + " TEXT, "
                 + Util.FOOD_TIME + " TEXT, " + Util.FOOD_LOCATION + " TEXT, " + Util.FOOD_QUANTITY + " INT, "
-                + Util.IN_LIST + " INT, " + Util.FOOD_IMAGE + " TEXT);" ;
+                + Util.IN_LIST + " INT, " + Util.IN_CART + " INT, " + Util.FOOD_IMAGE + " TEXT);" ;
         db.execSQL(CREATE_FOOD_TABLE);
 
     }
@@ -50,6 +50,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Util.FOOD_LOCATION, food.getLocation());
         contentValues.put(Util.FOOD_QUANTITY, food.getQuantity());
         contentValues.put(Util.IN_LIST, food.getInMyList());
+        contentValues.put(Util.IN_CART, food.getInMyList());
         contentValues.put(Util.FOOD_IMAGE, food.getImage().toString());
         long newRowID = db.insert(Util.FOOD_TABLE_NAME, null, contentValues);
         db.close();
@@ -72,6 +73,8 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 food.setPickUpTime(cursor.getString(4));
                 food.setLocation(cursor.getString(5));
                 food.setQuantity(cursor.getInt(6));
+                food.setInMyCart(cursor.getInt(8));
+                food.setImage(Uri.parse(cursor.getString(9)));
 
                 if (cursor.getInt(7) == 0)
                 {
@@ -82,7 +85,6 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                     food.setInMyList(1);
                     foodList.add(food);
                 }
-                food.setImage(Uri.parse(cursor.getString(8)));
 
             } while (cursor.moveToNext());
 
@@ -108,7 +110,8 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 food.setLocation(cursor.getString(5));
                 food.setQuantity(cursor.getInt(6));
                 food.setInMyList(cursor.getInt(7));
-                food.setImage(Uri.parse(cursor.getString(8)));
+                food.setInMyCart(cursor.getInt(8));
+                food.setImage(Uri.parse(cursor.getString(9)));
                 foodList.add(food);
 
             } while (cursor.moveToNext());
@@ -134,10 +137,52 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 food.setLocation(cursor.getString(5));
                 food.setQuantity(cursor.getInt(6));
                 food.setInMyList(cursor.getInt(7));
-                food.setImage(Uri.parse(cursor.getString(8)));
+                food.setInMyCart(cursor.getInt(8));
+                food.setImage(Uri.parse(cursor.getString(9)));
 
             } while (cursor.moveToNext());
         }
         return food;
+    }
+
+    public void AddToCart(int id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String Select = "UPDATE " + Util.FOOD_TABLE_NAME + " SET " + Util.IN_CART + "= 1" + " WHERE " + Util.FOOD_ID +  "=" + id ;
+    }
+
+    public List<Food> fetchAllFoodInMyCart(){
+        List<Food> foodList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String SelectAll = "SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.IN_CART +  "=1" ;
+        Cursor cursor = db.rawQuery(SelectAll, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Food food = new Food();
+                food.setTitle(cursor.getString(1));
+                food.setDescription(cursor.getString(2));
+                food.setDate(cursor.getString(3));
+                food.setPickUpTime(cursor.getString(4));
+                food.setLocation(cursor.getString(5));
+                food.setQuantity(cursor.getInt(6));
+                food.setInMyCart(cursor.getInt(7));
+                food.setImage(Uri.parse(cursor.getString(9)));
+
+                if (cursor.getInt(8) == 0)
+                {
+                    cursor.moveToNext();
+                }
+                else
+                {
+                    food.setInMyCart(1);
+                    foodList.add(food);
+                }
+
+            } while (cursor.moveToNext());
+
+        }
+        return foodList;
     }
 }

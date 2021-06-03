@@ -3,6 +3,7 @@ package com.example.a101d;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.a101d.RecyclerAdapters.RecyclerViewAdapter;
 import com.example.a101d.data.FoodDatabaseHelper;
 import com.example.a101d.model.Food;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

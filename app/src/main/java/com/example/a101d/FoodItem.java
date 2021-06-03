@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class FoodItem<view> extends AppCompatActivity {
     TextView foodItemDateField;
     TextView foodItemPUTField;
     TextView foodItemQuantityField;
+    Button foodItemAddToCart;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -81,6 +83,14 @@ public class FoodItem<view> extends AppCompatActivity {
         foodItemPUTField.setText(food.getPickUpTime());
         foodItemQuantityField.setText(String.valueOf(food.getQuantity()));
 
+        foodItemAddToCart = findViewById(R.id.foodItemAddToCart);
+        foodItemAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.AddToCart(ID);
+            }
+        });
+
     }
 
     private void initializeUi() {
@@ -100,11 +110,9 @@ public class FoodItem<view> extends AppCompatActivity {
         // Disables the button to prevent multiple clicks.
         googlePayButton.setClickable(false);
 
-        // The price provided to the API should include taxes and shipping.
-        // This price is not displayed to the user.
-        double garmentPrice = 10000;
-        long garmentPriceCents = Math.round(garmentPrice * PaymentsUtil.CENTS_IN_A_UNIT.longValue());
-        long priceCents = garmentPriceCents;
+        //all food costs $10 for this basic implementation
+        double foodPrice = 10;
+        long priceCents = Math.round(foodPrice * PaymentsUtil.CENTS_IN_A_UNIT.longValue());
 
         Optional<JSONObject> paymentDataRequestJson = PaymentsUtil.getPaymentDataRequest(priceCents);
         if (!paymentDataRequestJson.isPresent()) {

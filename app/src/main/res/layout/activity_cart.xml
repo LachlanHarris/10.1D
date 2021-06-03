@@ -6,14 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Cart">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="163dp"
-        android:layout_marginLeft="163dp"
-        android:layout_marginTop="253dp"
-        android:text="THIS IS THE CART"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/CartRecyclerView"
+        android:layout_width="411dp"
+        android:layout_height="383dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

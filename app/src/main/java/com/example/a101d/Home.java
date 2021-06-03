@@ -3,6 +3,7 @@ package com.example.a101d;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.a101d.RecyclerAdapters.RecyclerViewAdapter;
 import com.example.a101d.data.FoodDatabaseHelper;
 import com.example.a101d.model.Food;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,9 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Home extends AppCompatActivity implements RecyclerViewAdapter.OnRowClickListener{

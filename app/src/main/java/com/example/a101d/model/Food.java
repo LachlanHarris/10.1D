@@ -13,8 +13,11 @@ public class Food {
     int quantity;
     String Location;
     int inMyList;
+    int inMyCart;
 
-    public Food( String title, String description, String date, String pickUpTime, int quantity, String location, int inMyList) {
+
+
+    public Food(String title, String description, String date, String pickUpTime, int quantity, String location, int inMyList, int inMyCart) {
         this.title = title;
         this.description = description;
         this.date = date;
@@ -22,10 +25,19 @@ public class Food {
         this.quantity = quantity;
         this.Location = location;
         this.inMyList = inMyList;
+        this.inMyCart = inMyCart;
     }
 
     public Food() {
 
+    }
+
+    public int getInMyCart() {
+        return inMyCart;
+    }
+
+    public void setInMyCart(int inMyCart) {
+        this.inMyCart = inMyCart;
     }
 
     public int getFoodID() {
