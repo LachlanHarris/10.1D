@@ -78,6 +78,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Food food = new Food();
+                food.setFoodID(cursor.getInt(0));
                 food.setTitle(cursor.getString(1));
                 food.setDescription(cursor.getString(2));
                 food.setDate(cursor.getString(3));
