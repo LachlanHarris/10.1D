@@ -62,7 +62,7 @@ public class AddFood extends AppCompatActivity {
                 String location = locationField.getText().toString();
                 String date = DateFormat.format("MM/dd/yyyy", new Date(calender.getDate())).toString();
 
-                Food newFood = new Food(title,description,date,time,quantity,location,1, 0);
+                Food newFood = new Food(title,description,date,time,quantity,location,5, 5);
                 newFood.setImage(imageBitMap);
                 db.insertFood(newFood);
                 finish();

@@ -54,7 +54,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Util.FOOD_LOCATION, food.getLocation());
         contentValues.put(Util.FOOD_QUANTITY, food.getQuantity());
         contentValues.put(Util.IN_LIST, food.getInMyList());
-        contentValues.put(Util.IN_CART, food.getInMyList());
+        contentValues.put(Util.IN_CART, food.getInMyCart());
         //takes image and converts it into a byte array to be stored as a BLOB
         Bitmap image = food.getImage();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -112,7 +112,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         List<Food> foodList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String SelectAll = "SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.IN_LIST +  "=1" ;
+        String SelectAll = "SELECT * FROM " + Util.FOOD_TABLE_NAME ;
         Cursor cursor = db.rawQuery(SelectAll, null);
 
         if (cursor.moveToFirst()) {
@@ -175,6 +175,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getReadableDatabase();
         String Select = "UPDATE " + Util.FOOD_TABLE_NAME + " SET " + Util.IN_CART + "= 1" + " WHERE " + Util.FOOD_ID +  "=" + id ;
+        db.execSQL(Select);
     }
 
     public List<Food> fetchAllFoodInMyCart(){
