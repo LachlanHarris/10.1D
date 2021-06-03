@@ -5,13 +5,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Base64;
 
 import androidx.annotation.Nullable;
 
 import com.example.a101d.model.Food;
 import com.example.a101d.util.Util;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +29,7 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         String CREATE_FOOD_TABLE = "CREATE TABLE " + Util.FOOD_TABLE_NAME + " (" + Util.FOOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT , "
                 + Util.FOOD_TITLE + " TEXT, " + Util.FOOD_DESCRIPTION + " TEXT, " + Util.FOOD_DATE + " TEXT, "
                 + Util.FOOD_TIME + " TEXT, " + Util.FOOD_LOCATION + " TEXT, " + Util.FOOD_QUANTITY + " INT, "
-                + Util.IN_LIST + " INT, " + Util.IN_CART + " INT, " + Util.FOOD_IMAGE + " TEXT);" ;
+                + Util.IN_LIST + " INT, " + Util.IN_CART + " INT, " + Util.FOOD_IMAGE + " BLOB);" ;
         db.execSQL(CREATE_FOOD_TABLE);
 
     }
@@ -51,7 +55,14 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(Util.FOOD_QUANTITY, food.getQuantity());
         contentValues.put(Util.IN_LIST, food.getInMyList());
         contentValues.put(Util.IN_CART, food.getInMyList());
-        contentValues.put(Util.FOOD_IMAGE, food.getImage().toString());
+        //takes image and converts it into a byte array to be stored as a BLOB
+        Bitmap image = food.getImage();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        //stores the byte array
+        contentValues.put(Util.FOOD_IMAGE, byteArray);
         long newRowID = db.insert(Util.FOOD_TABLE_NAME, null, contentValues);
         db.close();
         return newRowID;
@@ -74,7 +85,12 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 food.setLocation(cursor.getString(5));
                 food.setQuantity(cursor.getInt(6));
                 food.setInMyCart(cursor.getInt(8));
-                food.setImage(Uri.parse(cursor.getString(9)));
+                //gets BLOB byte array
+                byte[] byteArrayImage = cursor.getBlob(9);
+                //constructs a bitmap from the byte array
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayImage , 0, byteArrayImage.length);
+                //seting the food image as the bitmap
+                food.setImage(bitmap);
 
                 if (cursor.getInt(7) == 0)
                 {
@@ -111,7 +127,12 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 food.setQuantity(cursor.getInt(6));
                 food.setInMyList(cursor.getInt(7));
                 food.setInMyCart(cursor.getInt(8));
-                food.setImage(Uri.parse(cursor.getString(9)));
+                //gets BLOB byte array
+                byte[] byteArrayImage = cursor.getBlob(9);
+                //constructs a bitmap from the byte array
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayImage , 0, byteArrayImage.length);
+                //seting the food image as the bitmap
+                food.setImage(bitmap);
                 foodList.add(food);
 
             } while (cursor.moveToNext());
@@ -138,7 +159,12 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 food.setQuantity(cursor.getInt(6));
                 food.setInMyList(cursor.getInt(7));
                 food.setInMyCart(cursor.getInt(8));
-                food.setImage(Uri.parse(cursor.getString(9)));
+                //gets BLOB byte array
+                byte[] byteArrayImage = cursor.getBlob(9);
+                //constructs a bitmap from the byte array
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayImage , 0, byteArrayImage.length);
+                //seting the food image as the bitmap
+                food.setImage(bitmap);
 
             } while (cursor.moveToNext());
         }
@@ -168,7 +194,12 @@ public class FoodDatabaseHelper extends SQLiteOpenHelper {
                 food.setLocation(cursor.getString(5));
                 food.setQuantity(cursor.getInt(6));
                 food.setInMyCart(cursor.getInt(7));
-                food.setImage(Uri.parse(cursor.getString(9)));
+                //gets BLOB byte array
+                byte[] byteArrayImage = cursor.getBlob(9);
+                //constructs a bitmap from the byte array
+                Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayImage , 0, byteArrayImage.length);
+                //seting the food image as the bitmap
+                food.setImage(bitmap);
 
                 if (cursor.getInt(8) == 0)
                 {

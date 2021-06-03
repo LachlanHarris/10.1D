@@ -6,8 +6,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,7 @@ import android.widget.ImageButton;
 import com.example.a101d.data.FoodDatabaseHelper;
 import com.example.a101d.model.Food;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class AddFood extends AppCompatActivity {
@@ -30,6 +33,7 @@ public class AddFood extends AppCompatActivity {
     EditText locationField;
     Button saveButton;
     Uri imageUri;
+    Bitmap imageBitMap;
 
 
     @Override
@@ -59,7 +63,7 @@ public class AddFood extends AppCompatActivity {
                 String date = DateFormat.format("MM/dd/yyyy", new Date(calender.getDate())).toString();
 
                 Food newFood = new Food(title,description,date,time,quantity,location,1, 0);
-                newFood.setImage(imageUri);
+                newFood.setImage(imageBitMap);
                 db.insertFood(newFood);
                 finish();
             }
@@ -89,5 +93,11 @@ public class AddFood extends AppCompatActivity {
         grantUriPermission("com.example.a61d", _imageUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
         SetImageButton(_imageUri);
         imageUri = _imageUri;
+        //converting uri to a bitmap so the data persists in the database
+        try {
+            imageBitMap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

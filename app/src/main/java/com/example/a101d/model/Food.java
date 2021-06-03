@@ -1,11 +1,12 @@
 package com.example.a101d.model;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 public class Food {
 
     int foodID;
-    Uri image;
+    Bitmap image;
     String title;
     String description;
     String date;
@@ -56,11 +57,11 @@ public class Food {
         this.inMyList = inMyList;
     }
 
-    public void setImage(Uri image) {
+    public void setImage(Bitmap image) {
         this.image = image;
     }
 
-    public Uri getImage() {
+    public Bitmap getImage() {
         return image;
     }
 

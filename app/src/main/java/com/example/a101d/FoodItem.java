@@ -76,7 +76,7 @@ public class FoodItem<view> extends AppCompatActivity {
 
         Food food = db.FetchFood(ID);
 
-        foodItemImage.setImageURI(food.getImage());
+        foodItemImage.setImageBitmap(food.getImage());
         foodItemTitleField.setText(food.getTitle());
         foodItemDescriptionField.setText(food.getDescription());
         foodItemDateField.setText(food.getDate());
@@ -200,18 +200,12 @@ public class FoodItem<view> extends AppCompatActivity {
         if (paymentInfo == null) {
             return;
         }
-
         try {
             JSONObject paymentMethodData = new JSONObject(paymentInfo).getJSONObject("paymentMethodData");
-            // If the gateway is set to "example", no payment information is returned - instead, the
-            // token will only consist of "examplePaymentMethodToken".
-
             final JSONObject tokenizationData = paymentMethodData.getJSONObject("tokenizationData");
             final String token = tokenizationData.getString("token");
-            final JSONObject info = paymentMethodData.getJSONObject("info");
-            final String billingName = info.getJSONObject("billingAddress").getString("name");
             Toast.makeText(
-                    this, "Success :" + billingName,
+                    this, "Success!",
                     Toast.LENGTH_LONG).show();
 
             // Logging token string.

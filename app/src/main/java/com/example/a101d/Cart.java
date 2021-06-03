@@ -97,7 +97,7 @@ public class Cart extends AppCompatActivity implements CartRecyclerViewAdapter.O
         googlePayButton.setClickable(false);
 
         //all food costs $10 for this basic implementation
-        double foodPrice = 10;
+        double foodPrice = 10 * foodList.size();
         long priceCents = Math.round(foodPrice * PaymentsUtil.CENTS_IN_A_UNIT.longValue());
 
         Optional<JSONObject> paymentDataRequestJson = PaymentsUtil.getPaymentDataRequest(priceCents);
@@ -185,18 +185,12 @@ public class Cart extends AppCompatActivity implements CartRecyclerViewAdapter.O
         if (paymentInfo == null) {
             return;
         }
-
         try {
             JSONObject paymentMethodData = new JSONObject(paymentInfo).getJSONObject("paymentMethodData");
-            // If the gateway is set to "example", no payment information is returned - instead, the
-            // token will only consist of "examplePaymentMethodToken".
-
             final JSONObject tokenizationData = paymentMethodData.getJSONObject("tokenizationData");
             final String token = tokenizationData.getString("token");
-            final JSONObject info = paymentMethodData.getJSONObject("info");
-            final String billingName = info.getJSONObject("billingAddress").getString("name");
             Toast.makeText(
-                    this, "Success :" + billingName,
+                    this, "Success!",
                     Toast.LENGTH_LONG).show();
 
             // Logging token string.
